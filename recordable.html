@@ -3,6 +3,12 @@
 <head>
 	<title></title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<style type="text/css">
+		#mouse{
+			display: none;
+		}
+
+	</style>
 	<script type="text/javascript" src="recordableMouse.js"></script>	
 <script type="text/javascript">
 	
@@ -32,6 +38,7 @@
 		});
 		$("#playBtn").click(function(){
 			var btnTxt = $("#playBtn .ui-btn-text").text();
+			$("#mouse").show();
 			if (btnTxt == 'Stop')
 				stopPlayback();
 			else
@@ -92,6 +99,7 @@
 		}, function(){
 			//on playback end
 			$("#playBtn .ui-btn-text").text("Play");
+
 			$("#playBtn").show();
 			$("#recordBtn").show();
 			$("#clearBtn").show();
