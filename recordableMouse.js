@@ -40,6 +40,23 @@ RecordableDrawing = function (canvasId)
 		
 	}
 
+
+	onClickRec =  function(event)
+	{
+
+		var canvasX = $(self.canvas).offset().left;
+		var canvasY = $(self.canvas).offset().top;
+		var x = Math.floor(event.pageX - canvasX);
+		var y = Math.floor(event.pageY - canvasY);
+
+		var	currAction = new Point(x,y,1);
+		self.drawAction(currAction, true);
+		if (self.currentRecording != null)
+			self.currentRecording.addAction(currAction);
+
+		event.preventDefault();
+	}
+
 	
 	this.startRecording = function()
 	{
@@ -173,8 +190,18 @@ RecordableDrawing = function (canvasId)
 			mouse.style.left = x+"px";
 			mouse.style.top = y+"px";	
 			break;
-		case 1: //lineto
-			
+		case 1:
+			 // handle clicks
+			 var div = document.createElement("div");
+			 div.className = "recClicks"
+			div.style.width = "10px";
+			div.style.height = "10px";
+			div.style.background = "red";
+			div.style.color = "white";
+			div.style.position = "absolute";
+			div.style.left = x+"px";
+			div.style.top = y+"px";
+			document.body.appendChild(div);
 			break;
 		}
 		if (addToArray)
@@ -193,7 +220,9 @@ RecordableDrawing = function (canvasId)
 		self.width = $(self.canvas).width();
 		self.height = $(self.canvas).height();
 		self.ctx = self.canvas.getContext("2d");
+		document.getElementById(canvasId).addEventListener("click", onClickRec);
 		document.getElementById(canvasId).addEventListener("mousemove", onMouseMove);
+		
 		self.clearCanvas();		
 	}
 	
