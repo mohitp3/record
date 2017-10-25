@@ -18,7 +18,6 @@ RecordableDrawing = function (canvasId)
 	var currentLineWidth = 5;
 	var pauseInfo = null;
 
-
 	//mouse
 	var mouse = document.getElementById("mouse");
 
@@ -32,7 +31,7 @@ RecordableDrawing = function (canvasId)
 			var y = Math.floor(event.pageY - canvasY);
 			
 			var	currAction = new Point(x,y,0);
-			self.drawAction(currAction, true);
+			// self.drawAction(currAction, true);
 			if (self.currentRecording != null)
 				self.currentRecording.addAction(currAction);
 				
@@ -50,7 +49,7 @@ RecordableDrawing = function (canvasId)
 		var y = Math.floor(event.pageY - canvasY);
 
 		var	currAction = new Point(x,y,1);
-		self.drawAction(currAction, true);
+		// self.drawAction(currAction, true);
 		if (self.currentRecording != null)
 			self.currentRecording.addAction(currAction);
 

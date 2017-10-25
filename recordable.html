@@ -4,9 +4,7 @@
 	<title></title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<style type="text/css">
-		#mouse{
-			display: none;
-		}
+		
 
 	</style>
 	<script type="text/javascript" src="recordableMouse.js"></script>	
@@ -37,8 +35,13 @@
 				stopRecording();
 		});
 		$("#playBtn").click(function(){
+			var elem = document.getElementsByClassName("recClicks");
+			if(elem.length){
+				while (elem[0]) {
+					elem[0].parentNode.removeChild(elem[0]);
+				}
+			}
 			var btnTxt = $("#playBtn .ui-btn-text").text();
-			$("#mouse").show();
 			if (btnTxt == 'Stop')
 				stopPlayback();
 			else
@@ -141,7 +144,7 @@
 	<table>
 	<tbody><tr>
 		<td>
-			<canvas id="canvas1" width="1000" height="1000" style="border: medium solid rgb(0, 0, 255);">
+			<canvas id="canvas1" width="400" height="400" style="border: medium solid rgb(0, 0, 255);">
 			</canvas>
 		</td>
 	</tr>
